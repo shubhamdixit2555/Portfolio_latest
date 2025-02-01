@@ -10,7 +10,7 @@ export const Home = () => {
             right: 0,
             top: 0,
             bottom: 0,
-          }} src=" .\public\assets\images\cartoon_img.png" alt="img" className="h-40 md:h-96 w-auto" />
+          }} src=" \assets\images\cartoon_img.png" alt="img" className="h-40 md:h-96 w-auto" />
         </div>
         <div id="home_2" className="w-full md:w-[50%] items-center md:items-start justify-center flex flex-col gap-7 md:gap-8 p-2">
           <h1 className="text-3xl md:text-5xl font-bold ">Hello, I'm <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-sky-400"><b>Shubham</b></span></h1>
@@ -36,7 +36,7 @@ export const Home = () => {
               <a href="https://wa.me/9458549339" title="Whatsapp" target="_blank" className="pointer hover:text-blue-600"><i className="pointer fa-brands fa-whatsapp text-3xl"></i></a>
             </li>
           </ul>
-          <a href="../public/assets/docs/ShubhamDixitResume.pdf" target="_blank" className="inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-sky-400 to-purple-600 group-hover:from-purple-600 group-hover:to-sky-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-500">
+          <a href="/assets/docs/ShubhamDixitResume.pdf" target="_blank" className="inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-sky-400 to-purple-600 group-hover:from-purple-600 group-hover:to-sky-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-500">
             <span className="rounded-md bg-white px-5 py-2.5 transition-all duration-75 ease-in group-hover:bg-transparent dark:bg-gray-900 group-hover:dark:bg-transparent">
             Get My Resume
             </span>
