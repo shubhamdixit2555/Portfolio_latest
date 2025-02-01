@@ -2,7 +2,7 @@
 export const Contact = () => {
   return (
     <section id="contact" className="my-6 md:my-12 p-2 flex flex-col w-full items-start gap-5 ">
-        <h2 className=" text-3xl md:text-4xl font-extrabold dark:text-white flex items-center justify-center gap-2"><img src="./public/assets/icons/contact.svg" alt=""/>Contact Me</h2>
+        <h2 className=" text-3xl md:text-4xl font-extrabold dark:text-white flex items-center justify-center gap-2"><img src="/assets/icons/contact.svg" alt=""/>Contact Me</h2>
         <div className="flex flex-col md:flex-row justify-between w-full gap-3 px-3 md:px-16 py-3">
           <div className="md:w-[50%] flex flex-col items-start gap-6 md:gap-7 md:max-w-md">
             <h3 className="text-2xl md:text-3xl font-bold dark:text-white ">Got Any Questions?</h3>
