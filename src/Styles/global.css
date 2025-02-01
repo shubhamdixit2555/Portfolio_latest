@@ -1,0 +1,88 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* cursors link  */
+/* * {cursor: url(https://cur.cursors-4u.net/cursors/cur-1/cur1.ani), url(https://cur.cursors-4u.net/cursors/cur-1/cur1.png), auto !important;}
+a, button, .pointer{cursor: url(https://ani.cursors-4u.net/cursors/cur-13/cur1149.ani), url(https://ani.cursors-4u.net/cursors/cur-13/cur1149.png), auto !important;} */
+
+/* Hide the default cursor */
+*{
+  cursor: none !important; /* Disable the system default cursor */
+}
+
+/* Custom cursor for default state */
+.custom-cursor {
+  position: fixed;
+  top: -50px;
+  left: -50px;
+  width: 48px; /* Adjust to your cursor size */
+  height: 48px;
+  pointer-events: none; /* Ensure it doesn't interfere with clicks */
+  z-index: 10000;
+}
+
+/* Custom cursor for hover state */
+.hover-cursor {
+  display: none; /* Initially hidden */
+  position: fixed;
+  width: 48px; /* Adjust to your cursor size */
+  height: 48px;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+section {
+  padding-top: 4rem; /* Adjust according to your navbar height */
+  margin-top: -4rem; /* Same value to offset the padding */
+}
+
+nav ul li a.active {
+  color: #45a9f6;
+  font-weight: 900;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the entire scrollbar */
+}
+::-webkit-scrollbar-track {
+  /* background: transparent !important; Color of the scrollbar track */
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #4071fab2; /* Color of the scrollbar handle */
+  background: linear-gradient( to bottom,#20B4FF,#9530FB);
+  border-radius: 10px; /* Roundness of the scrollbar handle */
+}
+#cursor{
+  opacity: 0;
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #45a9f6;
+  filter: blur(5px);
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-property: width, height, background-color, border;
+}
+.crsr_hover{
+  height: 70px !important; 
+  width: 70px !important;
+  background-color: transparent !important;
+  filter: blur(3px);
+  border: 2px solid #a700fe !important;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* hide custom cursor on mobile or tab screen */
+@media (max-width: 768px) {
+  #cursor, .custom-cursor, .hover-cursor {
+    display: none !important;
+  }
+  *{
+    cursor: auto !important;
+  }
+}
