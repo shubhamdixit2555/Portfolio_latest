@@ -2,7 +2,7 @@
 export const Projects = () => {
   return (
     <section id="projects" className="my-6 md:my-12 p-2 flex flex-col w-full items-start gap-5 ">
-        <h2 className=" text-3xl md:text-4xl font-extrabold dark:text-white flex items-center justify-center gap-2"><img src="./public/assets/icons/work.svg" alt=""></img>Projects</h2>
+        <h2 className=" text-3xl md:text-4xl font-extrabold dark:text-white flex items-center justify-center gap-2"><img src="/assets/icons/work.svg" alt=""></img>Projects</h2>
         <div className="flex gap-5 flex-wrap">
           {/* <!-- Employee Management System --> */}
           <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between">
