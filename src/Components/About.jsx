@@ -2,7 +2,7 @@
 export const About = () => {
   return (
     <section id="about" className="my-6 md:my-12 p-2 flex flex-col w-full items-start gap-6 ">
-        <h2 className=" text-3xl md:text-4xl font-extrabold dark:text-white flex items-center justify-center gap-2"><img src="../public/assets/icons/user.svg" alt="user" className="h-10"></img> About Me</h2>
+        <h2 className=" text-3xl md:text-4xl font-extrabold dark:text-white flex items-center justify-center gap-2"><img src="/assets/icons/user.svg" alt="user" className="h-10"></img> About Me</h2>
         <p className="text-xl text-gray-600 dark:text-gray-300 flex flex-col gap-3">
           <b>👋 Hello there!</b> I'm Shubham, a frontend developer with a passion for crafting websites that are:
           <ul className="ps-5 mb-3 space-y-1 list-disc list-inside text-lg md:text-xl">
