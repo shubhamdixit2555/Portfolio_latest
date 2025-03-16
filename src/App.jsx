@@ -1,6 +1,7 @@
 import useNavbarScroll from './hooks/useNavbarScroll';
 import Cursor from './Components/Cursor';
 import {motion, useScroll} from 'motion/react';
+import { useState, useEffect } from "react";
 
 import { Header } from './Components/Header';
 import { Home } from './Components/Home';
@@ -12,6 +13,17 @@ import { Footer } from './Components/Footer';
 import './Styles/global.css';
 
 function App() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust the delay as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const scrollYProgress = useScroll().scrollYProgress;
   useNavbarScroll(); // Activate the scroll logic
   return (
@@ -20,6 +32,9 @@ function App() {
       scaleX: scrollYProgress,
       zIndex: 100
     }}></motion.div>
+    { loading && (<div id="preLoaderContainer" className='bg-gray-100 dark:bg-gray-900'>
+      <div id="preLoader"></div>
+    </div>)}
     <div className="App bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
       <Cursor />
       <Header />
