@@ -34,6 +34,7 @@
   filter: blur(3px);
   border: 2px solid #a700fe !important;
 }
+
 #preLoaderContainer {
   position: fixed;
   top: 0;
@@ -47,9 +48,10 @@
 }
 
 #preLoader {
-  width: 100px; /* Adjust the size */
-  height: 100px; /* Adjust the size */
-  background: url(../assets/gif/checkLoader.gif) no-repeat center center;
+  width: 200px; /* Adjust the size */
+  height: 200px; /* Adjust the size */
+  /* background: url(../assets/gif/checkLoader.gif) no-repeat center center; */
+  background: url(../assets/gif/Animation1.json) no-repeat center center;
   background-size: contain; /* Ensures it fits within the div */
 }
 
