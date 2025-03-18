@@ -33,9 +33,7 @@ export const Header = () => {
     <nav className="backdrop-blur-md sticky top-0 min-h-16 shadow-md z-10">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#home" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Portfolio
-          </span>
+          <span className=" whitespace-nowrap self-center text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r to-sky-400 from-purple-400"><b>Portfolio</b></span>
         </a>
 
         <button
