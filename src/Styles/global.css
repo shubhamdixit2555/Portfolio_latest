@@ -2,36 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* cursors link  */
-/* * {cursor: url(https://cur.cursors-4u.net/cursors/cur-1/cur1.ani), url(https://cur.cursors-4u.net/cursors/cur-1/cur1.png), auto !important;}
-a, button, .pointer{cursor: url(https://ani.cursors-4u.net/cursors/cur-13/cur1149.ani), url(https://ani.cursors-4u.net/cursors/cur-13/cur1149.png), auto !important;} */
-
-/* Hide the default cursor */
-*{
-  cursor: none !important; /* Disable the system default cursor */
-}
-
-/* Custom cursor for default state */
-.custom-cursor {
-  position: fixed;
-  top: -50px;
-  left: -50px;
-  width: 48px; /* Adjust to your cursor size */
-  height: 48px;
-  pointer-events: none; /* Ensure it doesn't interfere with clicks */
-  z-index: 10000;
-}
-
-/* Custom cursor for hover state */
-.hover-cursor {
-  display: none; /* Initially hidden */
-  position: fixed;
-  width: 48px; /* Adjust to your cursor size */
-  height: 48px;
-  pointer-events: none;
-  z-index: 10000;
-}
-
 section {
   padding-top: 4rem; /* Adjust according to your navbar height */
   margin-top: -4rem; /* Same value to offset the padding */

@@ -29,7 +29,7 @@ export const Projects = () => {
             <div className="flex flex-row gap-2">
               {/* <!-- due to broken link now this link will be unclickable --> */}
               {/* <!-- <a href="https://shubham-project-01.netlify.app/" target="_blank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">View Project</a> --> */}
-              <a className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-500 rounded-lg not-allowed hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-500 dark:focus:ring-gray-600" title="This project is currently unavailable due to copyright reasons.">View Project</a>
+              <a className="cursor-not-allowed inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gray-500 rounded-lg not-allowed hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-500 dark:focus:ring-gray-600" title="This project is currently unavailable due to copyright reasons.">View Project</a>
               <a href="https://github.com/shubhamdixit2555/netflix_clone" target="_blank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">View Code</a>
             </div>
           </div>
