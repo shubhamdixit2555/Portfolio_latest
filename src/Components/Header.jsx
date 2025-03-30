@@ -57,7 +57,7 @@ export const Header = () => {
                   className={`block py-2 px-3 rounded transition-colors duration-300 md:p-0
                     ${
                       activeSection === section
-                        ? "text-blue-600 font-bold dark:text-blue-400"
+                        ? "text-blue-600 font-bold dark:text-blue-400 underline-offset-3 underline"
                         : "text-gray-900 dark:text-gray-300"
                     }
                     hover:text-blue-500 md:hover:text-blue-700 dark:hover:text-blue-500
