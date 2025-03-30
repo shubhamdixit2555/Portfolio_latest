@@ -1,6 +1,6 @@
 # Portfolio Website
 
-![Portfolio Screenshot](/public/assets/images/screenshot.jpeg)
+![Portfolio Screenshot](/public/assets/images/screenshot.png)
 
 Welcome to my portfolio repository! 🚀 This project showcases my skills, projects, and professional journey in web development, providing a user-friendly and responsive interface to explore my work.
 
