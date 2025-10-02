@@ -1,87 +1,83 @@
+import { motion } from "framer-motion";
+
+const skillsData = [
+  { name: "HTML", icon: "/assets/icons/HTML.svg" },
+  { name: "CSS", icon: "/assets/icons/CSS.svg" },
+  { name: "Bootstrap", icon: "/assets/icons/Bootstrap.svg" },
+  { name: "TailwindCSS", lightIcon: "/assets/icons/TailwindCSS-Light.svg", darkIcon: "/assets/icons/TailwindCSS-Dark.svg" },
+  { name: "JavaScript", icon: "/assets/icons/JavaScript.svg" },
+  { name: "React", lightIcon: "/assets/icons/React-Light.svg", darkIcon: "/assets/icons/React-Dark.svg" },
+  { name: "NodeJS", lightIcon: "/assets/icons/NodeJS-Light.svg", darkIcon: "/assets/icons/NodeJS-Dark.svg" },
+  { name: "MongoDB", icon: "/assets/icons/MongoDB.svg" },
+  { name: "ExpressJS", lightIcon: "/assets/icons/ExpressJS-Light.svg", darkIcon: "/assets/icons/ExpressJS-Dark.svg" },
+  { name: "Git", icon: "/assets/icons/Git.svg" },
+  { name: "Github", lightIcon: "/assets/icons/Github-Light.svg", darkIcon: "/assets/icons/Github-Dark.svg" },
+  { name: "VSCode", lightIcon: "/assets/icons/VSCode-Light.svg", darkIcon: "/assets/icons/VSCode-Dark.svg" },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 12,
+    },
+  },
+};
+
 export const Skills = () => {
   return (
-    <section id="skills" className="my-6 md:my-12 p-2 flex flex-col w-full items-start gap-5 ">
-      <h2 className="text-3xl md:text-4xl font-extrabold dark:text-white flex items-center justify-center gap-2">
-        <img src="/assets/icons/skill.svg" alt=""/> 
+    <section id="skills" className="my-12 md:my-20 p-2 flex flex-col w-full items-center gap-8">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.5 }}
+        className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-sky-400 flex items-center gap-3"
+      >
+        <img src="/assets/icons/skill.svg" alt="Skills Icon" className="h-10" />
         Skills
-      </h2>
+      </motion.h2>
 
-      <div className="overflow-x-auto">
-        <table className="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <tbody className="flex flex-col gap-8 md:gap-5">
-            
-            {/* Front-end */}
-            <tr className="flex md:flex-row flex-col">
-              <th scope="row" className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 flex items-center gap-2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-full md:w-44">
-                
-                {/* Light & Dark Mode Icons */}
-                <img src="/assets/icons/front-end.svg" alt="icon" className="h-8 " />  
-                
-                FRONT END
-              </th>
-              <td className="px-6 py-4 flex flex-wrap gap-8">
-                
-                {/* Icons with Light/Dark Mode */}
-                <img src="/assets/icons/HTML.svg" title="HTML" alt="icon" className="h-9 " />
-
-                <img src="/assets/icons/CSS.svg" title="CSS" alt="icon" className="h-9 " />
-
-                <img src="/assets/icons/Bootstrap.svg" title="Bootstrap" alt="icon" className="h-9" />
-
-                <img src="/assets/icons/TailwindCSS-Light.svg" title="TailwindCSS" alt="icon" className="h-9 dark:hidden" />
-                <img src="/assets/icons/TailwindCSS-Dark.svg" title="TailwindCSS" alt="icon" className="h-9 hidden dark:block" />
-
-                <img src="/assets/icons/JavaScript.svg" title="JavaScript" alt="icon" className="h-9" />
-
-                <img src="/assets/icons/React-Light.svg" title="React" alt="icon" className="h-9 dark:hidden" />
-                <img src="/assets/icons/React-Dark.svg" title="React" alt="icon" className="h-9 hidden dark:block" />
-              </td>
-            </tr>
-
-            {/* Back-end */}
-            <tr className="flex md:flex-row flex-col">
-              <th scope="row" className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 px-6 py-4 flex items-center gap-2 font-medium text-gray-900 whitespace-nowrap dark:text-white w-full md:w-44">
-                
-                {/* Light & Dark Mode Icons */}
-                <img src="/assets/icons/back-end.svg" alt="icon" className="h-8" />
-                BACK END
-              </th>
-              <td className="px-6 py-4 flex flex-wrap gap-8">
-                
-                <img src="/assets/icons/NodeJS-Light.svg" title="NodeJS" alt="icon" className="h-9 dark:hidden" />
-                <img src="/assets/icons/NodeJS-Dark.svg" title="NodeJS" alt="icon" className="h-9 hidden dark:block" />
-
-                <img src="/assets/icons/MongoDB.svg" title="MongoDB" alt="icon" className="h-9" />
-
-                <img src="/assets/icons/ExpressJS-Light.svg" title="ExpressJS" alt="icon" className="h-9 dark:hidden" />
-                <img src="/assets/icons/ExpressJS-Dark.svg" title="ExpressJS" alt="icon" className="h-9 hidden dark:block" />
-              </td>
-            </tr>
-
-            {/* Extra Skills */}
-            <tr className="flex md:flex-row flex-col">
-              <th scope="row" className="px-6 py-4 flex items-center gap-2 font-medium text-gray-900 whitespace-nowrap dark:text-white bg-white dark:bg-gray-800 w-full md:w-44">
-                
-                {/* Light & Dark Mode Icons */}
-                <img src="/assets/icons/ext-skill.svg" alt="icon" className="h-8" />
-
-                EXTRA SKILLS
-              </th>
-              <td className="px-6 py-4 flex flex-wrap gap-8">
-                
-                <img src="/assets/icons/Git.svg" title="Git" alt="icon" className="h-9" />
-
-                <img src="/assets/icons/Github-Light.svg" title="Github" alt="icon" className="h-9 dark:hidden" />
-                <img src="/assets/icons/Github-Dark.svg" title="Github" alt="icon" className="h-9 hidden dark:block" />
-
-                <img src="/assets/icons/VSCode-Light.svg" title="VSCode" alt="icon" className="h-9 dark:hidden" />
-                <img src="/assets/icons/VSCode-Dark.svg" title="VSCode" alt="icon" className="h-9 hidden dark:block" />
-              </td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 md:gap-8 w-full max-w-5xl"
+      >
+        {skillsData.map((skill) => (
+          <motion.div
+            key={skill.name}
+            variants={itemVariants}
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            className="flex flex-col items-center justify-center gap-2 p-4 bg-white/10 dark:bg-gray-800/20 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 rounded-xl shadow-lg aspect-square"
+          >
+            {skill.icon ? (
+              <img src={skill.icon} title={skill.name} alt={`${skill.name} icon`} className="h-10 md:h-12" />
+            ) : (
+              <>
+                <img src={skill.lightIcon} title={skill.name} alt={`${skill.name} icon`} className="h-10 md:h-12 dark:hidden" />
+                <img src={skill.darkIcon} title={skill.name} alt={`${skill.name} icon`} className="h-10 md:h-12 hidden dark:block" />
+              </>
+            )}
+            <p className="text-sm md:text-base font-medium text-center text-gray-800 dark:text-gray-200">{skill.name}</p>
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
-  )
-}
+  );
+};
