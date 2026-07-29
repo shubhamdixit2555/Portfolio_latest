@@ -75,9 +75,9 @@ export const Home = () => {
           <li><a href="https://github.com/shubhamdixit2555" title="GitHub" target="_blank" rel="noopener noreferrer" className="hover:text-sky-500 transition-colors"><i className="fa-brands fa-github text-3xl"></i></a></li>
           <li><a href="https://www.instagram.com/shubham_dixittt" title="Instagram" target="_blank" rel="noopener noreferrer" className="hover:text-sky-500 transition-colors"><i className="fa-brands fa-instagram text-3xl"></i></a></li>
           <li><a href="https://www.linkedin.com/in/shubham-dixit-dev/" title="LinkedIn" target="_blank" rel="noopener noreferrer" className="hover:text-sky-500 transition-colors"><i className="fa-brands fa-linkedin text-3xl"></i></a></li>
-          <li><a href="https://www.facebook.com/shubhamdixit2550" title="Facebook" target="_blank" rel="noopener noreferrer" className="hover:text-sky-500 transition-colors"><i className="fa-brands fa-facebook text-3xl"></i></a></li>
+          {/* <li><a href="https://www.facebook.com/shubhamdixit2550" title="Facebook" target="_blank" rel="noopener noreferrer" className="hover:text-sky-500 transition-colors"><i className="fa-brands fa-facebook text-3xl"></i></a></li> */}
           {/* <li><a href="https://discord.com/invite/H6Q2SzUp" title="Discord" target="_blank" rel="noopener noreferrer" className="hover:text-sky-500 transition-colors"><i className="fa-brands fa-discord text-3xl"></i></a></li> */}
-          <li><a href="https://wa.me/9458549339" title="Whatsapp" target="_blank" rel="noopener noreferrer" className="hover:text-sky-500 transition-colors"><i className="fa-brands fa-whatsapp text-3xl"></i></a></li>
+          {/* <li><a href="https://wa.me/9458549339" title="Whatsapp" target="_blank" rel="noopener noreferrer" className="hover:text-sky-500 transition-colors"><i className="fa-brands fa-whatsapp text-3xl"></i></a></li> */}
         </motion.ul>
         <motion.div variants={itemVariants} className="relative mt-3 group">
           {/* Glow Background (blur only here) */}
