@@ -72,26 +72,59 @@ const ProjectCard = ({
   <motion.div
     variants={itemVariants}
     whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 20 } }}
-    className="group relative flex flex-col rounded-3xl bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-2xl hover:border-sky-400/40 dark:hover:border-sky-400/40 transition-all overflow-hidden"
+    className="group relative flex flex-col h-full rounded-3xl bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-2xl hover:border-sky-400/40 dark:hover:border-sky-400/40 transition-all overflow-hidden"
   >
-    {/* Image Preview */}
-    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500 ease-out"
-        loading="lazy"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-    </div>
+    {/* Clickable Image Preview */}
+    {projectLink && !isUnavailable ? (
+      <a
+        href={projectLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={`View ${title} live`}
+        className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 block cursor-pointer"
+      >
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500 ease-out"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/90 dark:bg-slate-900/90 text-xs font-bold text-sky-600 dark:text-sky-400 shadow-md">
+            <span>Visit Site</span>
+            <FiExternalLink className="text-xs" />
+          </span>
+        </div>
+      </a>
+    ) : (
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500 ease-out"
+          loading="lazy"
+        />
+      </div>
+    )}
 
     {/* Details */}
-    <div className="p-7 sm:p-8 flex flex-col flex-grow justify-between gap-4">
-      <div className="space-y-3">
+    <div className="p-6 sm:p-7 flex flex-col flex-grow justify-between gap-4">
+      <div className="space-y-2.5">
         <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">
-          {title}
+          {projectLink ? (
+            <a
+              href={projectLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline focus:outline-none"
+            >
+              {title}
+            </a>
+          ) : (
+            title
+          )}
         </h3>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3">
+        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
           {description}
         </p>
       </div>
@@ -119,7 +152,7 @@ const ProjectCard = ({
             href={projectLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 shadow-md shadow-sky-500/20 hover:shadow-sky-500/30 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400 cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 shadow-md shadow-sky-500/20 hover:shadow-sky-500/30 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400 cursor-pointer"
           >
             <span>Live Demo</span>
             <FiExternalLink className="text-sm" />
@@ -131,7 +164,7 @@ const ProjectCard = ({
             href={codeLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none cursor-pointer"
           >
             <FaGithub className="text-sm" />
             <span>Code</span>
@@ -186,8 +219,8 @@ export const Projects = () => {
         viewport={{ once: true, amount: 0.1 }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full"
       >
-        {projectData.map((project, index) => (
-          <ProjectCard key={index} {...project} />
+        {projectData.map((project) => (
+          <ProjectCard key={project.title} {...project} />
         ))}
       </motion.div>
     </section>
