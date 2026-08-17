@@ -1,68 +1,102 @@
-// src/components/Cursor.jsx
-import { useEffect } from 'react';
-import './Cursor.css';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const Cursor = () => {
+  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
   useEffect(() => {
-    const cursor = document.querySelector('#cursor'); // Cyan circle
+    // Check if device supports touch
+    const checkTouch = () => {
+      if (
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia("(pointer: coarse)").matches
+      ) {
+        setIsTouchDevice(true);
+      }
+    };
+    checkTouch();
 
-    // Function to move all cursors
-    const moveCursor = (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
+    if (isTouchDevice) return;
 
-      // Move the cyan circle
-      const cursorWidth = cursor.offsetWidth / 2;
-      const cursorHeight = cursor.offsetHeight / 2;
-      setTimeout(() => {
-        cursor.style.transform = `translate(${x - cursorWidth}px, ${y - cursorHeight}px)`;
-      }, 100);
-      cursor.style.opacity = 1;
-
+    const handleMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+      if (!isVisible) setIsVisible(true);
     };
 
-    // Function to handle hover effects
-    const handleHover = () => {
-      cursor.classList.add('crsr_hover'); // Transform cyan circle to purple circle
+    const handleMouseOver = (e) => {
+      const target = e.target;
+      if (
+        target &&
+        typeof target.closest === "function" &&
+        target.closest("a, button, input, textarea, select, [role='button'], .cursor-pointer, .cursor-grab")
+      ) {
+        setIsHovered(true);
+      } else {
+        setIsHovered(false);
+      }
     };
 
-    const handleHoverLeave = () => {
-      cursor.classList.remove('crsr_hover'); // Revert purple circle to cyan circle
+    const handleMouseLeave = () => {
+      setIsVisible(false);
+      setIsHovered(false);
     };
+    const handleMouseEnter = () => setIsVisible(true);
 
-    // Add event listeners
-    document.addEventListener('mousemove', moveCursor);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
 
-    const hoverElements = document.querySelectorAll('a, button, .pointer');
-    hoverElements.forEach((element) => {
-      element.addEventListener('mouseenter', handleHover);
-      element.addEventListener('mouseleave', handleHoverLeave);
-    });
-    document.addEventListener("mouseleave", () => {
-      cursor.style.opacity = 0;
-    });
-  
-    // Show the cursors when entering the page
-    document.addEventListener("mouseenter", () => {
-      cursor.style.opacity = 1;
-    });
-
-    // Cleanup event listeners
     return () => {
-      document.removeEventListener('mousemove', moveCursor);
-      hoverElements.forEach((element) => {
-        element.removeEventListener('mouseenter', handleHover);
-        element.removeEventListener('mouseleave', handleHoverLeave);
-      });
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, []);
+  }, [isVisible, isTouchDevice]);
+
+  if (isTouchDevice || !isVisible) return null;
 
   return (
     <>
-      {/* Cyan Circle */}
-      <div id="cursor"></div>
+      {/* Outer Ring / Glow */}
+      <motion.div
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] border border-sky-400/60 dark:border-purple-400/60 mix-blend-difference"
+        animate={{
+          x: position.x - (isHovered ? 24 : 16),
+          y: position.y - (isHovered ? 24 : 16),
+          width: isHovered ? 48 : 32,
+          height: isHovered ? 48 : 32,
+          backgroundColor: isHovered ? "rgba(56, 189, 248, 0.15)" : "transparent",
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 28,
+          mass: 0.5,
+        }}
+      />
+
+      {/* Center Dot */}
+      <motion.div
+        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] bg-sky-400 dark:bg-purple-400 shadow-sm shadow-sky-400"
+        animate={{
+          x: position.x - 4,
+          y: position.y - 4,
+          scale: isHovered ? 0 : 1,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 800,
+          damping: 35,
+        }}
+      />
     </>
   );
 };
 
-export default Cursor;
+export default Cursor;

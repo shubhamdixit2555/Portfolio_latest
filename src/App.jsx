@@ -17,15 +17,9 @@ function App() {
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
-    // Add a class to html for smooth scrolling
-    document.documentElement.classList.add('smooth-scroll');
-    return () => document.documentElement.classList.remove('smooth-scroll');
-  }, []);
-
-  useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1200); // Adjust time as needed
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -36,44 +30,40 @@ function App() {
         {loading && <Loader key="loader" />}
       </AnimatePresence>
 
-      {!loading && (
+      <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
+        {/* Scroll progress bar */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.div
-            className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 origin-left z-[100] backdrop-blur-sm"
-            style={{ scaleX: scrollYProgress }}
-          />
-          <div className="App selection:bg-fuchsia-300 selection:text-fuchsia-900" style={{ scrollPaddingTop: '4rem' }}>
-            {/* Light & Dark Mode BG */}
-            <div className="fixed inset-0 z-[-2] dark:bg-slate-950 bg-white transition-colors duration-300">
-              {/* Radial Gradient - Left */}
-              <div className="absolute bottom-0 left-[-20%] right-0 top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))] will-change-transform"></div>
+          className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-sky-400 via-indigo-500 to-purple-600 origin-left z-[100] shadow-sm shadow-purple-500/20"
+          style={{ scaleX: scrollYProgress }}
+        />
 
-              {/* Radial Gradient - Right */}
-              <div className="absolute bottom-0 right-[-20%] top-[-10%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.3),rgba(255,255,255,0))] dark:bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))] will-change-transform"></div>
-            </div>
+        {/* Ambient Lighting / Background Mesh */}
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+          {/* Top Left Orb */}
+          <div className="absolute -top-32 -left-32 w-96 md:w-[600px] h-96 md:h-[600px] rounded-full bg-gradient-to-br from-sky-400/10 to-indigo-500/10 dark:from-sky-500/10 dark:to-purple-600/10 blur-3xl will-change-transform" />
+          {/* Top Right Orb */}
+          <div className="absolute top-1/3 -right-32 w-80 md:w-[500px] h-80 md:h-[500px] rounded-full bg-gradient-to-bl from-purple-400/10 to-pink-500/10 dark:from-purple-600/10 dark:to-pink-600/10 blur-3xl will-change-transform" />
+          {/* Bottom Left Orb */}
+          <div className="absolute bottom-10 -left-20 w-72 md:w-[500px] h-72 md:h-[500px] rounded-full bg-gradient-to-tr from-indigo-400/10 to-sky-400/10 dark:from-indigo-600/10 dark:to-sky-500/10 blur-3xl will-change-transform" />
+        </div>
 
-            <Cursor />
-            <Header />
+        <Cursor />
+        <Header />
 
-            <main className="container mx-auto px-4 pb-5 flex flex-col gap-8">
-              <Home />
-              <About />
-              <Skills />
-              <Projects />
-              <Contact />
-            </main>
+        <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex flex-col gap-12 sm:gap-16 md:gap-20 pb-12">
+          <Home />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
 
-            <Footer />
-            <ScrollToTop />
-          </div>
-        </motion.div>
-      )}
+        <Footer />
+        <ScrollToTop />
+      </div>
     </>
   );
 }
 
 export default App;
+

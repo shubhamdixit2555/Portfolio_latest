@@ -1,11 +1,20 @@
 import { motion } from "framer-motion";
+import {
+  FaGithub,
+  FaLinkedinIn,
+  FaInstagram,
+  // FaWhatsapp,
+  // FaDiscord,
+  // FaFacebookF,
+  // FaXTwitter,
+} from "react-icons/fa6";
 
-const navLinks = ["home", "about", "skills", "projects", "contact"];
-const socialIcons = [
-  { href: "https://github.com/shubhamdixit2555", icon: "fa-github", title: "GitHub" },
-  { href: "https://www.linkedin.com/in/shubham-dixit-dev/", icon: "fa-linkedin", title: "LinkedIn" },
-  { href: "https://www.instagram.com/mr_shubham_dixit", icon: "fa-instagram", title: "Instagram" },
-  { href: "https://wa.me/9458549339", icon: "fa-whatsapp", title: "Whatsapp" },
+const navLinks = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
 ];
 
 const handleLinkClick = (e, sectionId) => {
@@ -18,35 +27,140 @@ const handleLinkClick = (e, sectionId) => {
 
 export const Footer = () => {
   return (
-    <motion.footer
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
-      className="relative mt-12 py-8 px-4 bg-white/10 dark:bg-gray-900/20 backdrop-blur-lg border-t border-white/20 dark:border-gray-700/50 shadow-inner"
-    >
-      <div className="container mx-auto flex flex-col items-center gap-6 text-center">
-        <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-medium">
-          {navLinks.map((link) => (
-            <li key={link}>
-              <a href={`#${link}`} onClick={(e) => handleLinkClick(e, link)} className="hover:text-sky-500 dark:hover:text-sky-400 transition-colors">
-                {link.charAt(0).toUpperCase() + link.slice(1)}
+    <footer className="relative mt-20 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/40 dark:bg-slate-950/40 backdrop-blur-xl py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto flex flex-col items-center gap-8 text-center">
+        {/* Brand */}
+        <a
+          href="#home"
+          onClick={(e) => handleLinkClick(e, "home")}
+          className="text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-500"
+        >
+          Shubham Dixit<span className="text-slate-800 dark:text-slate-200">.</span>
+        </a>
+
+        {/* Navigation Links */}
+        <ul className="flex flex-wrap justify-center gap-x-6 sm:gap-x-8 gap-y-2 text-sm font-semibold text-slate-600 dark:text-slate-400">
+          {navLinks.map(({ id, label }) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                onClick={(e) => handleLinkClick(e, id)}
+                className="hover:text-sky-500 dark:hover:text-sky-400 transition-colors"
+              >
+                {label}
               </a>
             </li>
           ))}
         </ul>
-        <div className="flex gap-6">
-          {socialIcons.map((social) => (
-            <motion.a key={social.title} href={social.href} title={social.title} target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-sky-500 dark:hover:text-sky-400 transition-colors" whileHover={{ scale: 1.2, y: -2 }} transition={{ type: "spring", stiffness: 300 }}>
-              <i className={`fa-brands ${social.icon}`}></i>
-            </motion.a>
-          ))}
+
+        {/* Social Links */}
+        <div className="flex items-center gap-3">
+          {/* GitHub */}
+          <motion.a
+            href="https://github.com/shubhamdixit2555"
+            title="GitHub"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1, y: -2 }}
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 transition-all shadow-sm"
+          >
+            <FaGithub className="text-lg" />
+          </motion.a>
+
+          {/* LinkedIn */}
+          <motion.a
+            href="https://www.linkedin.com/in/shubham-dixit-dev/"
+            title="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1, y: -2 }}
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 transition-all shadow-sm"
+          >
+            <FaLinkedinIn className="text-base" />
+          </motion.a>
+
+          {/* Instagram */}
+          <motion.a
+            href="https://www.instagram.com/mr_shubham_dixit"
+            title="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1, y: -2 }}
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-pink-500 dark:hover:text-pink-400 hover:border-pink-400/50 transition-all shadow-sm"
+          >
+            <FaInstagram className="text-base" />
+          </motion.a>
+
+          {/* ============================================================ */}
+          {/* FUTURE FOOTER SOCIAL LINKS (Uncomment when you are ready):  */}
+          {/* ============================================================ */}
+
+          {/* WhatsApp */}
+          {/*
+          <motion.a
+            href="https://wa.me/9458549339"
+            title="WhatsApp"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1, y: -2 }}
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:border-emerald-400/50 transition-all shadow-sm"
+          >
+            <FaWhatsapp className="text-lg" />
+          </motion.a>
+          */}
+
+          {/* Discord */}
+          {/*
+          <motion.a
+            href="https://discord.com/invite/H6Q2SzUp"
+            title="Discord"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1, y: -2 }}
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/50 transition-all shadow-sm"
+          >
+            <FaDiscord className="text-base" />
+          </motion.a>
+          */}
+
+          {/* Facebook */}
+          {/*
+          <motion.a
+            href="https://www.facebook.com/shubhamdixit2550"
+            title="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1, y: -2 }}
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 hover:border-blue-400/50 transition-all shadow-sm"
+          >
+            <FaFacebookF className="text-base" />
+          </motion.a>
+          */}
+
+          {/* X / Twitter */}
+          {/*
+          <motion.a
+            href="https://x.com/your_handle"
+            title="X (Twitter)"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1, y: -2 }}
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-400/50 transition-all shadow-sm"
+          >
+            <FaXTwitter className="text-base" />
+          </motion.a>
+          */}
         </div>
-        <div className="text-sm text-gray-600 dark:text-gray-400">
+
+        {/* Copyright */}
+        <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 space-y-1">
           <p>&copy; {new Date().getFullYear()} Shubham Dixit. All rights reserved.</p>
-          <p>Designed & Built by Shubham Dixit</p>
+          <p className="text-xs text-slate-400 dark:text-slate-500">
+            Crafted with React, TailwindCSS & Framer Motion
+          </p>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 };
+
