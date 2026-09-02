@@ -161,7 +161,7 @@ export const Home = () => {
 
           {/* Instagram */}
           <a
-            href="https://www.instagram.com/mr_shubham_dixit"
+            href="https://www.instagram.com/shubham_dixittt"
             title="Instagram"
             target="_blank"
             rel="noopener noreferrer"
