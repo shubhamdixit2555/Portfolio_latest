@@ -3,10 +3,6 @@ import {
   FaGithub,
   FaLinkedinIn,
   FaInstagram,
-  // FaWhatsapp,
-  // FaDiscord,
-  // FaFacebookF,
-  // FaXTwitter,
 } from "react-icons/fa6";
 
 const navLinks = [
@@ -27,7 +23,13 @@ const handleLinkClick = (e, sectionId) => {
 
 export const Footer = () => {
   return (
-    <footer className="relative mt-20 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/40 dark:bg-slate-950/40 backdrop-blur-xl py-12 px-4 sm:px-6 lg:px-8">
+    <motion.footer
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.15 }}
+      transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      className="relative mt-20 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/40 dark:bg-slate-950/40 backdrop-blur-xl py-12 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-8 text-center">
         {/* Brand */}
         <a
@@ -90,66 +92,6 @@ export const Footer = () => {
           >
             <FaInstagram className="text-base" />
           </motion.a>
-
-          {/* ============================================================ */}
-          {/* FUTURE FOOTER SOCIAL LINKS (Uncomment when you are ready):  */}
-          {/* ============================================================ */}
-
-          {/* WhatsApp */}
-          {/*
-          <motion.a
-            href="https://wa.me/9458549339"
-            title="WhatsApp"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:border-emerald-400/50 transition-all shadow-sm"
-          >
-            <FaWhatsapp className="text-lg" />
-          </motion.a>
-          */}
-
-          {/* Discord */}
-          {/*
-          <motion.a
-            href="https://discord.com/invite/H6Q2SzUp"
-            title="Discord"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/50 transition-all shadow-sm"
-          >
-            <FaDiscord className="text-base" />
-          </motion.a>
-          */}
-
-          {/* Facebook */}
-          {/*
-          <motion.a
-            href="https://www.facebook.com/shubhamdixit2550"
-            title="Facebook"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 hover:border-blue-400/50 transition-all shadow-sm"
-          >
-            <FaFacebookF className="text-base" />
-          </motion.a>
-          */}
-
-          {/* X / Twitter */}
-          {/*
-          <motion.a
-            href="https://x.com/your_handle"
-            title="X (Twitter)"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-400/50 transition-all shadow-sm"
-          >
-            <FaXTwitter className="text-base" />
-          </motion.a>
-          */}
         </div>
 
         {/* Copyright */}
@@ -160,7 +102,8 @@ export const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
+export default Footer;
