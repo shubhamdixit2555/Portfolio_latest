@@ -36,20 +36,20 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.04,
-      delayChildren: 0.02,
+      staggerChildren: 0.05,
+      delayChildren: 0.05,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 14, opacity: 0, scale: 0.92 },
+  hidden: { y: 16, opacity: 0, scale: 0.92 },
   visible: {
     y: 0,
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.32,
+      duration: 0.35,
       ease: [0.25, 0.1, 0.25, 1],
     },
   },
@@ -89,7 +89,7 @@ export const Skills = () => {
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
-        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1], delay: 0.05 }}
+        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
         className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 shadow-sm max-w-2xl"
       >
         {categories.map((cat) => (
@@ -109,6 +109,7 @@ export const Skills = () => {
 
       {/* Skills Grid - 3 per row on mobile */}
       <motion.div
+        layout
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -116,17 +117,19 @@ export const Skills = () => {
         key={activeCategory}
         className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-4 md:gap-5 w-full max-w-5xl"
       >
-        {filteredSkills.map((skill) => (
-          <motion.div
-            key={skill.name}
-            variants={itemVariants}
-            whileHover={{
-              y: -4,
-              scale: 1.04,
-              transition: { duration: 0.2 },
-            }}
-            className="group relative flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl bg-white/90 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-xl hover:border-sky-400/50 dark:hover:border-sky-400/50 transition-all aspect-square"
-          >
+        <AnimatePresence mode="popLayout">
+          {filteredSkills.map((skill) => (
+            <motion.div
+              layout
+              key={skill.name}
+              variants={itemVariants}
+              whileHover={{
+                y: -4,
+                scale: 1.04,
+                transition: { duration: 0.2 },
+              }}
+              className="group relative flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl bg-white/90 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-xl hover:border-sky-400/50 dark:hover:border-sky-400/50 transition-all aspect-square"
+            >
               {/* Glow background on hover */}
               <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-sky-400/0 to-purple-500/0 group-hover:from-sky-400/10 group-hover:to-purple-500/10 transition-colors pointer-events-none" />
 
@@ -163,10 +166,10 @@ export const Skills = () => {
               </p>
             </motion.div>
           ))}
+        </AnimatePresence>
       </motion.div>
     </section>
   );
 };
 
-
-
+export default Skills;

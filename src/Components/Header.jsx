@@ -65,8 +65,8 @@ export const Header = () => {
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 ${
           isScrolled || isOpen
-            ? "bg-slate-50/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/60 shadow-xs"
-            : "bg-transparent border-b border-transparent"
+            ? "bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200/70 dark:border-slate-800/70 shadow-md shadow-black/5"
+            : "bg-white/70 dark:bg-slate-950/70 backdrop-blur-md"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
