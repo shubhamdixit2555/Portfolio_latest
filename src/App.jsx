@@ -17,17 +17,23 @@ function App() {
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // Safety fallback: ensure loading never hangs indefinitely
+    const safetyTimer = setTimeout(() => {
       setLoading(false);
-    }, 800);
+    }, 4500);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(safetyTimer);
   }, []);
 
   return (
     <>
-      <AnimatePresence>
-        {loading && <Loader key="loader" />}
+      <AnimatePresence mode="wait">
+        {loading && (
+          <Loader
+            key="preloader"
+            onLoadingComplete={() => setLoading(false)}
+          />
+        )}
       </AnimatePresence>
 
       <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
