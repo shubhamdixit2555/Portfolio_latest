@@ -1,26 +1,25 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Cursor = () => {
+export const Cursor = () => {
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    // Check if device supports touch
-    const checkTouch = () => {
-      if (
-        "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        window.matchMedia("(pointer: coarse)").matches
-      ) {
-        setIsTouchDevice(true);
-      }
-    };
-    checkTouch();
+    // Only enable custom cursor on genuine desktop pointer devices (mouse/trackpad)
+    const isTouch =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches;
 
-    if (isTouchDevice) return;
+    if (isTouch) {
+      setIsDesktop(false);
+      return;
+    }
+
+    setIsDesktop(true);
 
     const handleMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -57,13 +56,13 @@ const Cursor = () => {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [isVisible, isTouchDevice]);
+  }, [isVisible]);
 
-  if (isTouchDevice || !isVisible) return null;
+  if (!isDesktop || !isVisible) return null;
 
   return (
     <>
-      {/* Outer Ring / Glow */}
+      {/* Outer Ring */}
       <motion.div
         className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] border border-sky-400/60 dark:border-purple-400/60 mix-blend-difference"
         animate={{
@@ -99,4 +98,4 @@ const Cursor = () => {
   );
 };
 
-export default Cursor;
+export default Cursor;

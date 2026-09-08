@@ -46,11 +46,11 @@ function App() {
         {/* Ambient Lighting / Background Mesh */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
           {/* Top Left Orb */}
-          <div className="absolute -top-32 -left-32 w-96 md:w-[600px] h-96 md:h-[600px] rounded-full bg-gradient-to-br from-sky-400/10 to-indigo-500/10 dark:from-sky-500/10 dark:to-purple-600/10 blur-3xl will-change-transform" />
+          <div className="absolute -top-32 -left-32 w-72 md:w-[500px] h-72 md:h-[500px] rounded-full bg-gradient-to-br from-sky-400/10 to-indigo-500/10 dark:from-sky-500/10 dark:to-purple-600/10 blur-2xl md:blur-3xl" />
           {/* Top Right Orb */}
-          <div className="absolute top-1/3 -right-32 w-80 md:w-[500px] h-80 md:h-[500px] rounded-full bg-gradient-to-bl from-purple-400/10 to-pink-500/10 dark:from-purple-600/10 dark:to-pink-600/10 blur-3xl will-change-transform" />
+          <div className="absolute top-1/3 -right-32 w-64 md:w-[450px] h-64 md:h-[450px] rounded-full bg-gradient-to-bl from-purple-400/10 to-pink-500/10 dark:from-purple-600/10 dark:to-pink-600/10 blur-2xl md:blur-3xl" />
           {/* Bottom Left Orb */}
-          <div className="absolute bottom-10 -left-20 w-72 md:w-[500px] h-72 md:h-[500px] rounded-full bg-gradient-to-tr from-indigo-400/10 to-sky-400/10 dark:from-indigo-600/10 dark:to-sky-500/10 blur-3xl will-change-transform" />
+          <div className="absolute bottom-10 -left-20 w-64 md:w-[450px] h-64 md:h-[450px] rounded-full bg-gradient-to-tr from-indigo-400/10 to-sky-400/10 dark:from-indigo-600/10 dark:to-sky-500/10 blur-2xl md:blur-3xl" />
         </div>
 
         <Cursor />
