@@ -7,14 +7,12 @@ import { ThemeContext } from "../ThemeContext";
 export const Loader = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
   const completedRef = useRef(false);
-  const themeContext = useContext(ThemeContext);
-  const theme = themeContext?.theme || "dark";
 
   useEffect(() => {
     // Lock scroll during preloading
     document.body.style.overflow = "hidden";
 
-    // Lightweight stepped progress: smooth, predictable, zero lag on all devices
+    // Fast, lightweight stepped progress: ~0.8s duration
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -23,14 +21,14 @@ export const Loader = ({ onLoadingComplete }) => {
             completedRef.current = true;
             setTimeout(() => {
               if (onLoadingComplete) onLoadingComplete();
-            }, 250);
+            }, 180);
           }
           return 100;
         }
-        const increment = prev < 50 ? 6 : prev < 85 ? 4 : 5;
+        const increment = prev < 50 ? 8 : prev < 85 ? 6 : 7;
         return Math.min(prev + increment, 100);
       });
-    }, 45);
+    }, 32);
 
     return () => {
       clearInterval(interval);

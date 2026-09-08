@@ -1,4 +1,4 @@
-import { motion, useScroll, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Cursor from "./Components/Cursor";
 import { Header } from "./Components/Header";
@@ -14,13 +14,12 @@ import "./Styles/global.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     // Safety fallback: ensure loading never hangs indefinitely
     const safetyTimer = setTimeout(() => {
       setLoading(false);
-    }, 4500);
+    }, 3000);
 
     return () => clearTimeout(safetyTimer);
   }, []);
@@ -37,12 +36,6 @@ function App() {
       </AnimatePresence>
 
       <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
-        {/* Scroll progress bar */}
-        <motion.div
-          className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-sky-400 via-indigo-500 to-purple-600 origin-left z-[100] shadow-sm shadow-purple-500/20"
-          style={{ scaleX: scrollYProgress }}
-        />
-
         {/* Ambient Lighting / Background Mesh */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
           {/* Top Left Orb */}
