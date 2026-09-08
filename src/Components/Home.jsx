@@ -17,35 +17,33 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 18 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
-      stiffness: 90,
-      damping: 14,
+      duration: 0.45,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
 
 const imageVariants = {
-  hidden: { opacity: 0, scale: 0.85 },
+  hidden: { opacity: 0, scale: 0.9 },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      type: "spring",
-      stiffness: 80,
-      damping: 15,
-      delay: 0.2,
+      duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1],
+      delay: 0.15,
     },
   },
 };
@@ -61,7 +59,7 @@ export const Home = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.15 }}
         className="w-full lg:w-3/5 flex flex-col items-center lg:items-start text-center lg:text-left gap-5 sm:gap-6"
       >
         {/* Badges: Available + Project Management Aspirant */}
@@ -261,7 +259,7 @@ export const Home = () => {
         variants={imageVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.15 }}
         className="w-full lg:w-2/5 flex items-center justify-center relative select-none"
       >
         {/* Glow backdrop behind avatar */}

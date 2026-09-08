@@ -41,21 +41,20 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 24, opacity: 0 },
+  hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
-      type: "spring",
-      stiffness: 90,
-      damping: 14,
+      duration: 0.45,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
@@ -196,8 +195,8 @@ export const Projects = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
         className="text-center space-y-2"
       >
         <span className="text-xs sm:text-sm font-bold tracking-widest text-sky-500 uppercase">
@@ -216,7 +215,7 @@ export const Projects = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ once: false, amount: 0.1 }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full"
       >
         {projectData.map((project) => (

@@ -36,22 +36,21 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.04,
+      staggerChildren: 0.04,
+      delayChildren: 0.02,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0, scale: 0.9 },
+  hidden: { y: 14, opacity: 0, scale: 0.92 },
   visible: {
     y: 0,
     opacity: 1,
     scale: 1,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 12,
+      duration: 0.32,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
@@ -70,8 +69,8 @@ export const Skills = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
         className="text-center space-y-2"
       >
         <span className="text-xs sm:text-sm font-bold tracking-widest text-sky-500 uppercase">
@@ -86,7 +85,7 @@ export const Skills = () => {
       </motion.div>
 
       {/* Category Pills */}
-      <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm max-w-2xl">
+      <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 shadow-sm max-w-2xl">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -107,7 +106,8 @@ export const Skills = () => {
         layout
         variants={containerVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.1 }}
         key={activeCategory}
         className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 sm:gap-4 md:gap-5 w-full max-w-5xl"
       >
@@ -117,15 +117,15 @@ export const Skills = () => {
               layout
               key={skill.name}
               variants={itemVariants}
-              initial={{ opacity: 0, scale: 0.85 }}
+              initial={{ opacity: 0, scale: 0.88 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.85 }}
+              exit={{ opacity: 0, scale: 0.88 }}
               whileHover={{
-                y: -5,
+                y: -4,
                 scale: 1.04,
-                transition: { type: "spring", stiffness: 350, damping: 15 },
+                transition: { duration: 0.2 },
               }}
-              className="group relative flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:border-sky-400/40 dark:hover:border-sky-400/40 transition-all aspect-square"
+              className="group relative flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl bg-white/90 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-xl hover:border-sky-400/50 dark:hover:border-sky-400/50 transition-all aspect-square"
             >
               {/* Glow background on hover */}
               <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-sky-400/0 to-purple-500/0 group-hover:from-sky-400/10 group-hover:to-purple-500/10 transition-colors pointer-events-none" />

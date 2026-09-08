@@ -18,8 +18,8 @@ export const Contact = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
         className="text-center space-y-2"
       >
         <span className="text-xs sm:text-sm font-bold tracking-widest text-sky-500 uppercase">
@@ -39,8 +39,8 @@ export const Contact = () => {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
           className="lg:col-span-5 flex flex-col justify-between gap-6 p-7 sm:p-8 rounded-3xl bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm"
         >
           <div className="space-y-3">
@@ -119,8 +119,8 @@ export const Contact = () => {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
           className="lg:col-span-7 p-7 sm:p-8 rounded-3xl bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex flex-col justify-between"
         >
           <form action="https://api.web3forms.com/submit" method="POST" className="space-y-4">

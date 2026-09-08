@@ -147,7 +147,7 @@ export const Header = () => {
             {/* Theme Switcher Button */}
             <button
               type="button"
-              onClick={toggleTheme}
+              onClick={(e) => toggleTheme(e)}
               aria-label="Toggle Theme"
               className="p-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-200/60 dark:hover:bg-slate-800/80 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400/50 cursor-pointer"
             >
