@@ -62,7 +62,7 @@ section {
   border-radius: inherit;
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
 }
 
 .glow-effect:hover::before {
@@ -73,11 +73,15 @@ button {
   touch-action: manipulation;
 }
 
-/* Smooth Circular Ripple Theme View Transition */
+/* ========================================================================= */
+/* High-Performance Water Ripple Theme Transition (Zero Lag & GPU Accelerated) */
+/* ========================================================================= */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+  will-change: clip-path;
+  transform: translateZ(0);
 }
 
 ::view-transition-old(root) {
@@ -85,5 +89,13 @@ button {
 }
 
 ::view-transition-new(root) {
-  z-index: 9999;
+  z-index: 999999;
+}
+
+/* Disable competing CSS color transitions during active View Transition to eliminate frame drops */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: none !important;
 }

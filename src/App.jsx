@@ -35,7 +35,7 @@ function App() {
         )}
       </AnimatePresence>
 
-      <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
+      <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden">
         {/* Ambient Lighting / Background Mesh */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
           {/* Top Left Orb */}

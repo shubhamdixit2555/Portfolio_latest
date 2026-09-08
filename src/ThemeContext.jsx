@@ -35,7 +35,7 @@ export const ThemeProvider = ({ children }) => {
     applyThemeToDOM(theme);
   }, [theme, applyThemeToDOM]);
 
-  // Listen to system changes if user hasn't explicitly set a preference in current session
+  // Listen to system changes if user hasn't explicitly set a preference
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e) => {
@@ -51,7 +51,7 @@ export const ThemeProvider = ({ children }) => {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, [applyThemeToDOM]);
 
-  // Circular ripple / View Transition animation expanding smoothly from the clicked button
+  // Silky Smooth Water-Drop Ripple Theme Toggle (GPU accelerated, zero-lag on mobile)
   const toggleTheme = useCallback((event) => {
     const nextTheme = theme === "dark" ? "light" : "dark";
 
@@ -60,15 +60,16 @@ export const ThemeProvider = ({ children }) => {
       "startViewTransition" in document &&
       !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // Fallback for browsers without View Transitions
     if (!isViewTransitionSupported) {
       setTheme(nextTheme);
       applyThemeToDOM(nextTheme);
       return;
     }
 
-    // Determine origin coordinates from the click event or button center
-    let x = window.innerWidth - 50;
-    let y = 35;
+    // Determine water drop origin from the button or click event
+    let x = window.innerWidth - 45;
+    let y = 32;
 
     if (event) {
       if (typeof event.clientX === "number" && typeof event.clientY === "number" && event.clientX > 0) {
@@ -81,36 +82,51 @@ export const ThemeProvider = ({ children }) => {
       }
     }
 
+    // Radius to reach all screen corners
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y)
     );
+
+    const root = document.documentElement;
+    root.classList.add("theme-transitioning");
 
     const transition = document.startViewTransition(() => {
       applyThemeToDOM(nextTheme);
       setTheme(nextTheme);
     });
 
-    transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
-      ];
+    transition.ready
+      .then(() => {
+        // Detect lower-end mobile devices to optimize duration
+        const isMobile =
+          typeof window !== "undefined" &&
+          (window.innerWidth < 768 || navigator.maxTouchPoints > 0);
+        const duration = isMobile ? 320 : 380;
 
-      document.documentElement.animate(
-        {
-          clipPath: clipPath,
-        },
-        {
-          duration: 480,
-          easing: "cubic-bezier(0.4, 0, 0.2, 1)",
-          pseudoElement: "::view-transition-new(root)",
-        }
-      );
-    }).catch(() => {
-      setTheme(nextTheme);
-      applyThemeToDOM(nextTheme);
-    });
+        const animation = root.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: duration,
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)", // Natural water ripple / splash expansion curve
+            pseudoElement: "::view-transition-new(root)",
+          }
+        );
+
+        animation.onfinish = () => {
+          root.classList.remove("theme-transitioning");
+        };
+      })
+      .catch(() => {
+        root.classList.remove("theme-transitioning");
+        setTheme(nextTheme);
+        applyThemeToDOM(nextTheme);
+      });
   }, [theme, applyThemeToDOM]);
 
   const value = useMemo(() => ({ theme, toggleTheme, setTheme }), [theme, toggleTheme]);
