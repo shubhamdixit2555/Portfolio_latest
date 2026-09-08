@@ -1,15 +1,45 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FiMail, FiPhone, FiMapPin, FiSend, FiCopy, FiCheck, FiZap, FiClock } from "react-icons/fi";
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCopy, FiCheck, FiClock, FiAlertCircle, FiLoader } from "react-icons/fi";
 
 export const Contact = () => {
   const [copied, setCopied] = useState(false);
+  const [formStatus, setFormStatus] = useState("idle"); // "idle" | "loading" | "success" | "error"
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("shubhamdixit2555@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus("loading");
+    setStatusMessage("");
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        setFormStatus("success");
+        setStatusMessage("Thank you! Your message has been sent successfully. I'll get back to you shortly.");
+        e.target.reset();
+      } else {
+        setFormStatus("error");
+        setStatusMessage(data.message || "Something went wrong. Please try again or email me directly.");
+      }
+    } catch {
+      setFormStatus("error");
+      setStatusMessage("Unable to send message right now. Please email me directly at shubhamdixit2555@gmail.com.");
+    }
   };
 
   return (
@@ -52,7 +82,7 @@ export const Contact = () => {
             </p>
 
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400 pt-1">
-              <FiClock />
+              <FiClock aria-hidden="true" />
               <span>Replies within a few hours</span>
             </div>
           </div>
@@ -62,7 +92,7 @@ export const Contact = () => {
             <div className="p-4 rounded-2xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center justify-between gap-3 group hover:border-sky-400/40 transition-colors">
               <div className="flex items-center gap-3 overflow-hidden">
                 <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 shrink-0">
-                  <FiMail className="w-5 h-5" />
+                  <FiMail className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <div className="overflow-hidden">
                   <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">Direct Email</p>
@@ -76,18 +106,20 @@ export const Contact = () => {
               </div>
 
               <button
+                type="button"
                 onClick={handleCopyEmail}
+                aria-label="Copy email address to clipboard"
                 title="Copy Email to Clipboard"
                 className="p-2.5 rounded-xl text-slate-500 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-200/80 dark:hover:bg-slate-700/80 transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-sky-400/50 cursor-pointer"
               >
-                {copied ? <FiCheck className="w-4 h-4 text-emerald-500" /> : <FiCopy className="w-4 h-4" />}
+                {copied ? <FiCheck className="w-4 h-4 text-emerald-500" aria-hidden="true" /> : <FiCopy className="w-4 h-4" aria-hidden="true" />}
               </button>
             </div>
 
             {/* Phone Card */}
             <div className="p-4 rounded-2xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-3 hover:border-indigo-400/40 transition-colors">
               <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 shrink-0">
-                <FiPhone className="w-5 h-5" />
+                <FiPhone className="w-5 h-5" aria-hidden="true" />
               </div>
               <div>
                 <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">Phone / WhatsApp</p>
@@ -103,7 +135,7 @@ export const Contact = () => {
             {/* Location Card */}
             <div className="p-4 rounded-2xl bg-slate-100/70 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-3 hover:border-purple-400/40 transition-colors">
               <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 shrink-0">
-                <FiMapPin className="w-5 h-5" />
+                <FiMapPin className="w-5 h-5" aria-hidden="true" />
               </div>
               <div>
                 <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">Location</p>
@@ -123,8 +155,9 @@ export const Contact = () => {
           transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
           className="lg:col-span-7 p-7 sm:p-8 rounded-3xl bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800/80 shadow-sm flex flex-col justify-between"
         >
-          <form action="https://api.web3forms.com/submit" method="POST" className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <input type="hidden" name="access_key" value="5c30d441-a642-4ba0-8466-e799185ebcc8" />
+            <input type="hidden" name="subject" value="New Portfolio Contact Form Submission" />
 
             {/* Name Fields */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -140,6 +173,7 @@ export const Contact = () => {
                   id="first_name"
                   name="first_name"
                   required
+                  autoComplete="given-name"
                   placeholder="e.g. Alex"
                   className="w-full px-4 py-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 transition-all"
                 />
@@ -156,6 +190,7 @@ export const Contact = () => {
                   type="text"
                   id="last_name"
                   name="last_name"
+                  autoComplete="family-name"
                   placeholder="e.g. Rivera"
                   className="w-full px-4 py-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 transition-all"
                 />
@@ -176,6 +211,7 @@ export const Contact = () => {
                   id="email"
                   name="email"
                   required
+                  autoComplete="email"
                   placeholder="alex@example.com"
                   className="w-full px-4 py-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 transition-all"
                 />
@@ -192,6 +228,7 @@ export const Contact = () => {
                   type="tel"
                   id="phone"
                   name="phone"
+                  autoComplete="tel"
                   placeholder="e.g. +91 00000 00000"
                   className="w-full px-4 py-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500/30 focus:border-sky-500 transition-all"
                 />
@@ -216,12 +253,44 @@ export const Contact = () => {
               />
             </div>
 
+            {/* Status Alert Banner */}
+            {statusMessage && (
+              <div
+                role="status"
+                aria-live="polite"
+                className={`p-4 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2.5 transition-all ${
+                  formStatus === "success"
+                    ? "bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300"
+                    : "bg-red-500/15 border border-red-500/30 text-red-700 dark:text-red-300"
+                }`}
+              >
+                {formStatus === "success" ? (
+                  <FiCheck className="w-5 h-5 shrink-0 text-emerald-500" />
+                ) : (
+                  <FiAlertCircle className="w-5 h-5 shrink-0 text-red-500" />
+                )}
+                <span>{statusMessage}</span>
+              </div>
+            )}
+
             <button
               type="submit"
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-600 hover:from-sky-600 hover:via-indigo-600 hover:to-purple-700 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400 cursor-pointer"
+              disabled={formStatus === "loading"}
+              className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-600 hover:from-sky-600 hover:via-indigo-600 hover:to-purple-700 shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400 cursor-pointer ${
+                formStatus === "loading" ? "opacity-75 cursor-not-allowed" : ""
+              }`}
             >
-              <span>Send Message</span>
-              <FiSend className="text-base" />
+              {formStatus === "loading" ? (
+                <>
+                  <FiLoader className="text-base animate-spin" />
+                  <span>Sending Message...</span>
+                </>
+              ) : (
+                <>
+                  <span>Send Message</span>
+                  <FiSend className="text-base" />
+                </>
+              )}
             </button>
           </form>
         </motion.div>
@@ -230,6 +299,4 @@ export const Contact = () => {
   );
 };
 
-
-
-
+export default Contact;

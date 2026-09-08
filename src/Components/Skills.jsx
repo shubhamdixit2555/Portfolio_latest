@@ -94,6 +94,7 @@ export const Skills = () => {
       >
         {categories.map((cat) => (
           <button
+            type="button"
             key={cat}
             onClick={() => setActiveCategory(cat)}
             className={`relative px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all cursor-pointer ${
@@ -140,6 +141,8 @@ export const Skills = () => {
                   <img
                     src={skill.icon}
                     alt={`${skill.name} icon`}
+                    width="44"
+                    height="44"
                     className="max-h-8 max-w-8 sm:max-h-11 sm:max-w-11 object-contain"
                     loading="lazy"
                   />
@@ -148,12 +151,16 @@ export const Skills = () => {
                     <img
                       src={skill.lightIcon}
                       alt={`${skill.name} icon`}
+                      width="44"
+                      height="44"
                       className="max-h-8 max-w-8 sm:max-h-11 sm:max-w-11 object-contain dark:hidden"
                       loading="lazy"
                     />
                     <img
                       src={skill.darkIcon}
                       alt={`${skill.name} icon`}
+                      width="44"
+                      height="44"
                       className="max-h-8 max-w-8 sm:max-h-11 sm:max-w-11 object-contain hidden dark:block"
                       loading="lazy"
                     />

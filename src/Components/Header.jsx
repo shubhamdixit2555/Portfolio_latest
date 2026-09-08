@@ -39,6 +39,17 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Keyboard accessibility: close mobile drawer on Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
   const handleLinkClick = (sectionId) => {
     setIsOpen(false);
 
@@ -52,7 +63,7 @@ export const Header = () => {
 
   return (
     <>
-      {/* Mobile Drawer Backdrop (Click outside to close) */}
+      {/* Mobile Drawer Backdrop */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
@@ -70,16 +81,17 @@ export const Header = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
-          {/* Animated Brand Logo with perfectly aligned baseline dot */}
+          {/* Animated Brand Logo */}
           <a
             href="#home"
+            aria-label="Shubham Dixit - Go to Home"
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick("home");
             }}
-            className="group flex items-center gap-2 focus:outline-none select-none cursor-pointer"
+            className="group flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-sky-400/50 rounded-xl select-none cursor-pointer p-1"
           >
-            {/* Glowing Animated Icon Badge */}
+            {/* Glowing Icon Badge */}
             <motion.div
               whileHover={{ scale: 1.08, rotate: [0, -4, 4, 0] }}
               transition={{ duration: 0.3 }}
@@ -90,10 +102,10 @@ export const Header = () => {
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
                 className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
               />
-              <span className="relative z-10 text-white font-black">S</span>
+              <span className="relative z-10 text-white font-black" aria-hidden="true">S</span>
             </motion.div>
 
-            {/* Name with perfectly aligned baseline period */}
+            {/* Name */}
             <div className="flex items-baseline text-lg sm:text-xl font-black tracking-tight leading-none">
               {"Shubham".split("").map((char, index) => (
                 <motion.span
@@ -114,8 +126,11 @@ export const Header = () => {
             </div>
           </a>
 
-          {/* Desktop Nav - text turns blue on hover */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2 bg-slate-100/80 dark:bg-slate-800/60 p-1.5 rounded-full border border-slate-200/60 dark:border-slate-700/60 backdrop-blur-md">
+          {/* Desktop Nav */}
+          <nav
+            aria-label="Main Navigation"
+            className="hidden md:flex items-center gap-1 lg:gap-2 bg-slate-100/80 dark:bg-slate-800/60 p-1.5 rounded-full border border-slate-200/60 dark:border-slate-700/60 backdrop-blur-md"
+          >
             {navLinks.map(({ id, label }) => {
               const isActive = activeSection === id;
               return (
@@ -123,7 +138,8 @@ export const Header = () => {
                   type="button"
                   key={id}
                   onClick={() => handleLinkClick(id)}
-                  className={`relative px-4 py-1.5 text-sm font-semibold rounded-full transition-colors duration-200 cursor-pointer ${
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative px-4 py-1.5 text-sm font-semibold rounded-full transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-sky-400/50 ${
                     isActive
                       ? "text-sky-600 dark:text-sky-400 font-bold"
                       : "text-slate-600 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400"
@@ -148,13 +164,13 @@ export const Header = () => {
             <button
               type="button"
               onClick={toggleTheme}
-              aria-label="Toggle Theme"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
               className="p-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-200/60 dark:hover:bg-slate-800/80 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400/50 cursor-pointer"
             >
               {theme === "dark" ? (
-                <FiSun className="w-5 h-5 text-amber-400 animate-spin-slow" />
+                <FiSun className="w-5 h-5 text-amber-400" aria-hidden="true" />
               ) : (
-                <FiMoon className="w-5 h-5 text-slate-700" />
+                <FiMoon className="w-5 h-5 text-slate-700" aria-hidden="true" />
               )}
             </button>
 
@@ -162,25 +178,34 @@ export const Header = () => {
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              aria-label="Toggle Navigation Menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation-menu"
+              aria-label={isOpen ? "Close main menu" : "Open main menu"}
               className="md:hidden flex items-center justify-center w-11 h-11 rounded-xl text-slate-700 dark:text-slate-300 bg-slate-100/90 dark:bg-slate-800/80 border border-slate-200/70 dark:border-slate-700/70 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400/50 cursor-pointer select-none"
             >
-              {isOpen ? <FiX className="w-6 h-6 text-sky-500" /> : <FiMenu className="w-6 h-6" />}
+              {isOpen ? (
+                <FiX className="w-6 h-6 text-sky-500" aria-hidden="true" />
+              ) : (
+                <FiMenu className="w-6 h-6" aria-hidden="true" />
+              )}
             </button>
           </div>
         </div>
 
-        {/* Mobile Drawer Menu - ABSOLUTE FLOATING OVERLAY (Does NOT push page content down!) */}
+        {/* Mobile Drawer Menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              id="mobile-navigation-menu"
+              role="dialog"
+              aria-label="Mobile Navigation"
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="absolute top-full left-0 right-0 md:hidden border-b border-slate-200/80 dark:border-slate-800/80 bg-white/98 dark:bg-slate-950/98 backdrop-blur-2xl shadow-2xl overflow-hidden"
             >
-              <div className="px-4 py-4 flex flex-col gap-2">
+              <nav className="px-4 py-4 flex flex-col gap-2">
                 {navLinks.map(({ id, label }) => {
                   const isActive = activeSection === id;
                   return (
@@ -188,7 +213,8 @@ export const Header = () => {
                       type="button"
                       key={id}
                       onClick={() => handleLinkClick(id)}
-                      className={`w-full text-left px-5 py-3.5 rounded-2xl text-base font-bold transition-all cursor-pointer block active:scale-[0.98] ${
+                      aria-current={isActive ? "page" : undefined}
+                      className={`w-full text-left px-5 py-3.5 rounded-2xl text-base font-bold transition-all cursor-pointer block active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-sky-400/50 ${
                         isActive
                           ? "bg-sky-500/10 dark:bg-sky-500/15 text-sky-600 dark:text-sky-400"
                           : "text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-slate-100/80 dark:hover:bg-slate-900/80"
@@ -198,7 +224,7 @@ export const Header = () => {
                     </button>
                   );
                 })}
-              </div>
+              </nav>
             </motion.div>
           )}
         </AnimatePresence>
@@ -207,3 +233,4 @@ export const Header = () => {
   );
 };
 
+export default Header;

@@ -138,10 +138,11 @@ export const Home = () => {
           {/* GitHub */}
           <a
             href="https://github.com/shubhamdixit2555"
+            aria-label="GitHub Profile"
             title="GitHub"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 hover:shadow-md hover:scale-105 transition-all"
+            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 hover:shadow-md hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <FaGithub className="text-xl" />
           </a>
@@ -149,10 +150,11 @@ export const Home = () => {
           {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/shubham-dixit-dev/"
+            aria-label="LinkedIn Profile"
             title="LinkedIn"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 hover:shadow-md hover:scale-105 transition-all"
+            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 hover:shadow-md hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <FaLinkedinIn className="text-lg" />
           </a>
@@ -160,69 +162,14 @@ export const Home = () => {
           {/* Instagram */}
           <a
             href="https://www.instagram.com/shubham_dixittt"
+            aria-label="Instagram Profile"
             title="Instagram"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-pink-500 dark:hover:text-pink-400 hover:border-pink-400/50 hover:shadow-md hover:scale-105 transition-all"
+            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-pink-500 dark:hover:text-pink-400 hover:border-pink-400/50 hover:shadow-md hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-pink-400"
           >
             <FaInstagram className="text-lg" />
           </a>
-
-          {/* ============================================================ */}
-          {/* FUTURE SOCIAL LINKS (Ready to uncomment whenever you wish): */}
-          {/* ============================================================ */}
-
-          {/* WhatsApp (Uncomment below once username/link is configured) */}
-          {/*
-          <a
-            href="https://wa.me/9458549339"
-            title="WhatsApp"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:border-emerald-400/50 hover:shadow-md hover:scale-105 transition-all"
-          >
-            <FaWhatsapp className="text-xl" />
-          </a>
-          */}
-
-          {/* Discord (Uncomment below to enable Discord link) */}
-          {/*
-          <a
-            href="https://discord.com/invite/H6Q2SzUp"
-            title="Discord"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/50 hover:shadow-md hover:scale-105 transition-all"
-          >
-            <FaDiscord className="text-lg" />
-          </a>
-          */}
-
-          {/* Facebook (Uncomment below to enable Facebook link) */}
-          {/*
-          <a
-            href="https://www.facebook.com/shubhamdixit2550"
-            title="Facebook"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 hover:border-blue-400/50 hover:shadow-md hover:scale-105 transition-all"
-          >
-            <FaFacebookF className="text-lg" />
-          </a>
-          */}
-
-          {/* X / Twitter (Uncomment below to enable X/Twitter link) */}
-          {/*
-          <a
-            href="https://x.com/your_handle"
-            title="X (Twitter)"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-11 h-11 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-400/50 hover:shadow-md hover:scale-105 transition-all"
-          >
-            <FaXTwitter className="text-lg" />
-          </a>
-          */}
         </motion.div>
 
         {/* CTA Buttons */}
@@ -284,6 +231,8 @@ export const Home = () => {
             whileDrag={{ scale: 1.05, cursor: "grabbing" }}
             src="/assets/images/cartoon_img.png"
             alt="Shubham Dixit - Avatar"
+            width="420"
+            height="420"
             className="h-64 sm:h-80 md:h-96 lg:h-[420px] w-auto drop-shadow-2xl cursor-grab will-change-transform"
             loading="eager"
           />

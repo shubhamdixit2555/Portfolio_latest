@@ -36,6 +36,14 @@ function App() {
       </AnimatePresence>
 
       <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden">
+        {/* Skip to Main Content Link for WCAG 2.2 AA Keyboard Accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-sky-500 focus:text-white focus:font-bold focus:rounded-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-sky-300"
+        >
+          Skip to main content
+        </a>
+
         {/* Ambient Lighting / Background Mesh */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
           {/* Top Left Orb */}
@@ -49,7 +57,10 @@ function App() {
         <Cursor />
         <Header />
 
-        <main className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex flex-col gap-12 sm:gap-16 md:gap-20 pb-12">
+        <main
+          id="main-content"
+          className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex flex-col gap-12 sm:gap-16 md:gap-20 pb-12"
+        >
           <Home />
           <About />
           <Skills />

@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import animationData from "../assets/gif/Animation1.json";
-import { ThemeContext } from "../ThemeContext";
 
 export const Loader = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
@@ -81,6 +81,10 @@ export const Loader = ({ onLoadingComplete }) => {
       </div>
     </motion.div>
   );
+};
+
+Loader.propTypes = {
+  onLoadingComplete: PropTypes.func,
 };
 
 export default Loader;

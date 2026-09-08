@@ -79,12 +79,15 @@ const ProjectCard = ({
         href={projectLink}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={`Open live demo for ${title}`}
         title={`View ${title} live`}
         className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 block cursor-pointer"
       >
         <img
           src={image}
-          alt={title}
+          alt={`Screenshot preview of ${title}`}
+          width="600"
+          height="375"
           className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
         />
@@ -99,7 +102,9 @@ const ProjectCard = ({
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
         <img
           src={image}
-          alt={title}
+          alt={`Screenshot preview of ${title}`}
+          width="600"
+          height="375"
           className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
         />
@@ -151,6 +156,7 @@ const ProjectCard = ({
             href={projectLink}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`View live demo for ${title}`}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 shadow-md shadow-sky-500/20 hover:shadow-sky-500/30 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400 cursor-pointer"
           >
             <span>Live Demo</span>
@@ -163,7 +169,8 @@ const ProjectCard = ({
             href={codeLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none cursor-pointer"
+            aria-label={`View GitHub source code for ${title}`}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400 cursor-pointer"
           >
             <FaGithub className="text-sm" />
             <span>Code</span>

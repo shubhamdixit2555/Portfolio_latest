@@ -94,11 +94,12 @@ export const Footer = () => {
           {/* GitHub */}
           <motion.a
             href="https://github.com/shubhamdixit2555"
+            aria-label="GitHub Profile"
             title="GitHub"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 transition-all shadow-sm"
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <FaGithub className="text-lg" />
           </motion.a>
@@ -106,11 +107,12 @@ export const Footer = () => {
           {/* LinkedIn */}
           <motion.a
             href="https://www.linkedin.com/in/shubham-dixit-dev/"
+            aria-label="LinkedIn Profile"
             title="LinkedIn"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 transition-all shadow-sm"
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-sky-500 dark:hover:text-sky-400 hover:border-sky-400/50 transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <FaLinkedinIn className="text-base" />
           </motion.a>
@@ -118,74 +120,15 @@ export const Footer = () => {
           {/* Instagram */}
           <motion.a
             href="https://www.instagram.com/shubham_dixittt"
+            aria-label="Instagram Profile"
             title="Instagram"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-pink-500 dark:hover:text-pink-400 hover:border-pink-400/50 transition-all shadow-sm"
+            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-pink-500 dark:hover:text-pink-400 hover:border-pink-400/50 transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400"
           >
             <FaInstagram className="text-base" />
           </motion.a>
-
-          {/* ============================================================ */}
-          {/* FUTURE FOOTER SOCIAL LINKS (Uncomment when you are ready):  */}
-          {/* ============================================================ */}
-
-          {/* WhatsApp */}
-          {/*
-          <motion.a
-            href="https://wa.me/9458549339"
-            title="WhatsApp"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:border-emerald-400/50 transition-all shadow-sm"
-          >
-            <FaWhatsapp className="text-lg" />
-          </motion.a>
-          */}
-
-          {/* Discord */}
-          {/*
-          <motion.a
-            href="https://discord.com/invite/H6Q2SzUp"
-            title="Discord"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/50 transition-all shadow-sm"
-          >
-            <FaDiscord className="text-base" />
-          </motion.a>
-          */}
-
-          {/* Facebook */}
-          {/*
-          <motion.a
-            href="https://www.facebook.com/shubhamdixit2550"
-            title="Facebook"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 hover:border-blue-400/50 transition-all shadow-sm"
-          >
-            <FaFacebookF className="text-base" />
-          </motion.a>
-          */}
-
-          {/* X / Twitter */}
-          {/*
-          <motion.a
-            href="https://x.com/your_handle"
-            title="X (Twitter)"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-400/50 transition-all shadow-sm"
-          >
-            <FaXTwitter className="text-base" />
-          </motion.a>
-          */}
         </motion.div>
 
         {/* Copyright */}
