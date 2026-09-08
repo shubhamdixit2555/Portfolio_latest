@@ -51,83 +51,14 @@ export const ThemeProvider = ({ children }) => {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, [applyThemeToDOM]);
 
-  // Silky Smooth Water-Drop Ripple Theme Toggle (GPU accelerated, zero-lag on mobile)
-  const toggleTheme = useCallback((event) => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-
-    const isViewTransitionSupported =
-      typeof document !== "undefined" &&
-      "startViewTransition" in document &&
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    // Fallback for browsers without View Transitions
-    if (!isViewTransitionSupported) {
-      setTheme(nextTheme);
+  // Direct, smooth theme toggle (No heavy animations, instant & clean across all devices)
+  const toggleTheme = useCallback(() => {
+    setTheme((prevTheme) => {
+      const nextTheme = prevTheme === "dark" ? "light" : "dark";
       applyThemeToDOM(nextTheme);
-      return;
-    }
-
-    // Determine water drop origin from the button or click event
-    let x = window.innerWidth - 45;
-    let y = 32;
-
-    if (event) {
-      if (typeof event.clientX === "number" && typeof event.clientY === "number" && event.clientX > 0) {
-        x = event.clientX;
-        y = event.clientY;
-      } else if (event.currentTarget && typeof event.currentTarget.getBoundingClientRect === "function") {
-        const rect = event.currentTarget.getBoundingClientRect();
-        x = rect.left + rect.width / 2;
-        y = rect.top + rect.height / 2;
-      }
-    }
-
-    // Radius to reach all screen corners
-    const endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
-
-    const root = document.documentElement;
-    root.classList.add("theme-transitioning");
-
-    const transition = document.startViewTransition(() => {
-      applyThemeToDOM(nextTheme);
-      setTheme(nextTheme);
+      return nextTheme;
     });
-
-    transition.ready
-      .then(() => {
-        // Detect lower-end mobile devices to optimize duration
-        const isMobile =
-          typeof window !== "undefined" &&
-          (window.innerWidth < 768 || navigator.maxTouchPoints > 0);
-        const duration = isMobile ? 320 : 380;
-
-        const animation = root.animate(
-          {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${endRadius}px at ${x}px ${y}px)`,
-            ],
-          },
-          {
-            duration: duration,
-            easing: "cubic-bezier(0.22, 1, 0.36, 1)", // Natural water ripple / splash expansion curve
-            pseudoElement: "::view-transition-new(root)",
-          }
-        );
-
-        animation.onfinish = () => {
-          root.classList.remove("theme-transitioning");
-        };
-      })
-      .catch(() => {
-        root.classList.remove("theme-transitioning");
-        setTheme(nextTheme);
-        applyThemeToDOM(nextTheme);
-      });
-  }, [theme, applyThemeToDOM]);
+  }, [applyThemeToDOM]);
 
   const value = useMemo(() => ({ theme, toggleTheme, setTheme }), [theme, toggleTheme]);
 
